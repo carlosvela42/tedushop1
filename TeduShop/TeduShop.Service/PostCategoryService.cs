@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TeduShop.Data.Infrastructure;
 using TeduShop.Data.Repositories;
 using TeduShop.Model.Models;
@@ -18,17 +19,19 @@ namespace TeduShop.Service
         IEnumerable<PostCategory> GetAllByParentId(int parentId);
 
         PostCategory GetById(int id);
+
+        void Save();
     }
 
     public class PostCategoryService : IPostCategoryService
     {
         private IPostCategoryRepository _postCategoryRepository;
-        private IUnitOfWork _IUnitOfWork;
+        private IUnitOfWork _unitOfWork;
 
         public PostCategoryService(IPostCategoryRepository PostCategoryRepository, IUnitOfWork unitOfWork)
         {
             this._postCategoryRepository = PostCategoryRepository;
-            this._IUnitOfWork = unitOfWork;
+            this._unitOfWork = unitOfWork;
         }
 
         public PostCategory Add(PostCategory postCategory)
@@ -54,6 +57,11 @@ namespace TeduShop.Service
         public PostCategory GetById(int id)
         {
             return _postCategoryRepository.GetSingleById(id);
+        }
+
+        public void Save()
+        {
+            _unitOfWork.Commit();
         }
 
         public void Update(PostCategory postCategory)
