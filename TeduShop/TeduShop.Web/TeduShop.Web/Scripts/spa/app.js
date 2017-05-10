@@ -1,15 +1,37 @@
 ﻿var myApp = angular.module('myModule', []);
 
-myApp.controller("myController", myController);
-myApp.controller("studentController", studentController);
-//myController.$inject = ['$scope'];
+myApp.controller("schoolController", schoolController);
+myApp.directive("teduShopDirective", teduShopDirective);
+myApp.service('validatorService', validatorService);
+
+schoolController.$inject = ['$scope', 'validatorService'];
 
 //declare
-function myController($rootScope,$scope) {
-    $rootScope.message = "This is my message from Controller"
+function schoolController($scope, validator) {   
+    
+    $scope.checkNumber = function () {
+        $scope.message = validatorService.checkNumber($scope.num);
+    }
+    $scope.num = 1;
 }
 
-//declare
-function studentController($rootScope, $scope) {
-    $scope.message = "This is my message from Student"
+function validatorService($window) {
+    return {
+        checkNumber : checkNumber
+    }
+    function checkNumber(input) {
+        if (input % 2 == 0) {
+            //$window.alert("This is even");
+            return "This is even";
+        }
+        else
+            return "This is odd";
+    }
+}
+
+function teduShopDirective() {
+    return {
+        restrict : 'E',
+        templateUrl : "/Scripts/spa/teduShopDirective.html"
+    }
 }

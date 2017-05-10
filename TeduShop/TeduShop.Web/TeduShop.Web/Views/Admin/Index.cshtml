@@ -13,13 +13,12 @@
     <script src="~/Scripts/spa/app.js"></script>
 </head>
 <body>
-    <div ng-controller="myController"> 
-        10+20 ={{10+20}}
+    <div ng-controller="schoolController"> 
+        <tedu-shop-directive></tedu-shop-directive>
+        <input type="number" ng-model="num" />{{num}}
         {{message}}
+        <button ng-click="checkNumber()">check number</button>
     </div>
-    <div ng-controller="studentController">
-        10+20 ={{10+20}}
-        {{message}}
-    </div>
+ 
 </body>
 </html>
