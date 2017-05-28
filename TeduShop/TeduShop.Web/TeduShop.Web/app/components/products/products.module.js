@@ -1,4 +1,6 @@
-﻿(function () {
+﻿
+
+(function () {
     angular.module('tedushop.products', ['tedushop.common']).config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
