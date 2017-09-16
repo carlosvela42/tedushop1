@@ -60,21 +60,9 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201704090114147_initialDB.cs" />
-    <Compile Include="Migrations\201704090114147_initialDB.Designer.cs">
-      <DependentUpon>201704090114147_initialDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704130035521_AddErrorTable.cs" />
-    <Compile Include="Migrations\201704130035521_AddErrorTable.Designer.cs">
-      <DependentUpon>201704130035521_AddErrorTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704301637374_Intergrate-AspnetIdentity.cs" />
-    <Compile Include="Migrations\201704301637374_Intergrate-AspnetIdentity.Designer.cs">
-      <DependentUpon>201704301637374_Intergrate-AspnetIdentity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705041555533_ChangeKey.cs" />
-    <Compile Include="Migrations\201705041555533_ChangeKey.Designer.cs">
-      <DependentUpon>201705041555533_ChangeKey.cs</DependentUpon>
+    <Compile Include="Migrations\201708240103067_createData.cs" />
+    <Compile Include="Migrations\201708240103067_createData.Designer.cs">
+      <DependentUpon>201708240103067_createData.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -113,17 +101,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704090114147_initialDB.resx">
-      <DependentUpon>201704090114147_initialDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704130035521_AddErrorTable.resx">
-      <DependentUpon>201704130035521_AddErrorTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704301637374_Intergrate-AspnetIdentity.resx">
-      <DependentUpon>201704301637374_Intergrate-AspnetIdentity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705041555533_ChangeKey.resx">
-      <DependentUpon>201705041555533_ChangeKey.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708240103067_createData.resx">
+      <DependentUpon>201708240103067_createData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
