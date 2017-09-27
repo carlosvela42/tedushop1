@@ -16,12 +16,16 @@ namespace TeduShop.Web.Api
     [RoutePrefix("api/productcategory")]
     public class ProductCategoryController : ApiControllerBase
     {
+        #region Initialize
+
         private IProductCategoryService _productCategoryService;
 
         public ProductCategoryController(IErrorService errorService, IProductCategoryService productCategoryService) : base(errorService)
         {
             this._productCategoryService = productCategoryService;
         }
+
+        #endregion Initialize
 
         [Route("getall")]
         [HttpGet]
@@ -31,7 +35,7 @@ namespace TeduShop.Web.Api
             {
                 int totalRow = 0;
                 var listCategory = _productCategoryService.GetAll(keyword);
-
+                
                 totalRow = listCategory.Count();
 
                 var query = listCategory.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
@@ -52,13 +56,29 @@ namespace TeduShop.Web.Api
             });
         }
 
+        [Route("getbyid/{id:int}")]
+        [HttpGet]
+        public HttpResponseMessage GetById(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _productCategoryService.GetById(id);
+
+                var listProductCategoryVm = Mapper.Map<ProductCategoryViewModel>(model);
+
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listProductCategoryVm);
+
+                return response;
+            });
+        }
+
         [Route("getallparents")]
         [HttpGet]
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
-            {                
-                var listCategory = _productCategoryService.GetAll();                     
+            {
+                var listCategory = _productCategoryService.GetAll();
 
                 var listProductCategoryVm = Mapper.Map<List<ProductCategoryViewModel>>(listCategory);
 
@@ -84,7 +104,7 @@ namespace TeduShop.Web.Api
                 {
                     var newProductCategory = new ProductCategory();
                     newProductCategory.UpdateProductCategory(productCategoryVm);
-
+                    newProductCategory.CreatedDate = DateTime.Now;
                     _productCategoryService.Add(newProductCategory);
                     _productCategoryService.Save();
 
@@ -95,5 +115,31 @@ namespace TeduShop.Web.Api
             });
         }
 
+        [Route("update")]
+        [HttpPut]
+        [AllowAnonymous]
+        public HttpResponseMessage Update(HttpRequestMessage request, ProductCategoryViewModel productCategoryVm)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var dbProductCategory = _productCategoryService.GetById(productCategoryVm.ID);
+                    dbProductCategory.UpdateProductCategory(productCategoryVm);
+                    dbProductCategory.UpdatedDate = DateTime.Now;
+                    _productCategoryService.Update(dbProductCategory);
+                    _productCategoryService.Save();
+
+                    var responseData = Mapper.Map<ProductCategoryViewModel>(dbProductCategory);
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+                return response;
+            });
+        }
     }
 }

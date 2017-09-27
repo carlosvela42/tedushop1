@@ -30,6 +30,7 @@ namespace TeduShop.UnitTest.RepositoryTest
             Assert.AreEqual(1, list.Count);
         }
         [TestMethod]
+        [Ignore]
         public void PostCategory_Repository_Create()
         {
             PostCategory category = new PostCategory();
