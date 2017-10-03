@@ -243,3 +243,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+TeduShop/TeduShop.Web/TeduShop.Web/UploadedFiles/
