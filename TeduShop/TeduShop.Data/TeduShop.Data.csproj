@@ -64,6 +64,10 @@
     <Compile Include="Migrations\201708240103067_createData.Designer.cs">
       <DependentUpon>201708240103067_createData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710041038355_AddTagField.cs" />
+    <Compile Include="Migrations\201710041038355_AddTagField.Designer.cs">
+      <DependentUpon>201710041038355_AddTagField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
@@ -103,6 +107,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201708240103067_createData.resx">
       <DependentUpon>201708240103067_createData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710041038355_AddTagField.resx">
+      <DependentUpon>201710041038355_AddTagField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
